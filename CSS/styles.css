@@ -13,7 +13,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.6;
-    margin : 0 auto;
+    margin: 0 auto;
 }
 
 nav {
@@ -27,7 +27,6 @@ nav h1 {
     color: #ccc;
     font-size: 4rem;
     margin-right: auto;
-    background-size: cover;
     margin-left: 2%;
 }
 
@@ -56,7 +55,6 @@ nav ul li a:hover {
 
 .MainContainer {
     padding: 20px;
-    background-color: #616161;
     flex: 1;
 }
 
@@ -65,43 +63,13 @@ nav ul li a:hover {
     padding: 20px;
     border-radius: 8px;
     text-align: center;
+    display: block;
 }
 
-#section1{
-    display: flex;
-    flex-direction: column;
-}
-
-.ContienePJ {
-    margin-bottom: 20px;
-}
-
-.busqueda input {
-    padding: 10px;
-    margin-right: 5px;
-    width: 200px;
-    border: 1px solid #555;
-    border-radius: 10px;
-}
-
-#button {
-    padding: 10px;
-    background-color: #ff6a00;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#button:hover {
-    background-color: #e65a00;
-}
-
-/* Cambios realizados aquí */
+/* Contenedor para Anime */
 #anime-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(650px, auto)); /* Cambiado a filas */
+    grid-template-columns: repeat(auto-fill, minmax(650px, auto));
     gap: 20px;
     padding: 5%;
     object-fit: fill;
@@ -111,21 +79,20 @@ nav ul li a:hover {
     background-color: #444;
     border-radius: 8px;
     padding: 20px;
-    margin: 2%; /* Reducido el margen */
+    margin: 2%;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease; /* Agregar transición para el efecto */
+    transition: transform 0.3s ease;
 }
 
 .anime-item:hover {
-    transform: scale(1.1); /* Aumentar tamaño al hacer hover */
+    transform: scale(1.1);
     z-index: 2;
 }
 
 #generos {
     display: block;
     padding: 5px;
-    border-style: 1px solid #ffffff;
 }
 
 #generitos {
@@ -133,12 +100,13 @@ nav ul li a:hover {
     width: 50%;
     border-radius: 10%;
     display: inline;
-    padding : 0.3%
+    padding: 0.3%;
 }
-.anime-grid{
+
+.anime-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cambiado a columnas */
-    gap: 50px; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 50px;
     padding: 10px;
 }
 
@@ -147,13 +115,13 @@ nav ul li a:hover {
     height: auto;
     border-radius: 4px;
     margin-right: 15px;
-    object-fit: cover; /* Cubre el área del contenedor sin deformar */
+    object-fit: cover;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .anime-image img:hover {
     transform: scale(1.5);
-    box-shadow: 0 10px 100px rgba(0, 0, 0, 10);
+    box-shadow: 0 10px 100px rgba(0, 0, 0, 0.1);
 }
 
 .anime-info h3 {
@@ -161,7 +129,6 @@ nav ul li a:hover {
     align-items: center;
     font-weight: bold;
     font-size: 1.5rem;
-    margin : 0 auto;
 }
 
 .anime-info p {
@@ -169,65 +136,86 @@ nav ul li a:hover {
     font-size: 1.2rem;
     font-weight: 5;
     margin-bottom: 1%;
-    margin: 0 auto;
 }
 
 
+
+/* Pantalla Inicio */
+.ConteinerCard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.card {
+    
+    width: 100%;
+    max-width: 350px;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card img {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    
+}
+
+.card-content {
+    padding: 1rem;
+    text-align: center;
+}
 footer {
     background-color: #333;
     color: #ccc;
     text-align: center;
     padding: 10px;
-    background-position: bottom center;
+    position:static;
 }
 
 /* Media Queries para Responsividad */
 @media (max-width: 800px) {
-    body{
-        margin : 0 auto;
-    }
     nav h1 {
-        color: #ccc;
         font-size: 1.4rem;
         margin-right: auto;
-        background-size: cover;
     }
     #anime-container {
-        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); 
-        margin-right : 0 auto;/* Ajustar tamaño de filas para pantallas pequeñas */
-        
+        grid-template-columns: 1fr;
     }
-    .anime-grid{
-        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Cambiado a columnas */
-        gap: 20px; /* Espacio entre columnas */
-        margin-right : 0 auto;
-    }
-
-    .anime-info{
-        margin :auto;
+    .anime-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .anime-item {
-        padding: 10px; /* Reducir el padding en pantallas pequeñas */
-        margin-right : 0 auto;
+        padding: 10px;
     }
 
     .anime-image img {
-        width: 200px; /* Ajustar el tamaño de las imágenes en pantallas pequeñas */
+        width: 200px;
     }
 }
 
 @media (max-width: 480px) {
     nav h1 {
-        font-size: 2rem; /* Ajustar el tamaño del título aún más en pantallas muy pequeñas */
+        font-size: 2rem;
     }
 
-
     .anime-item {
-        margin: 10px 0; /* Ajustar el margen en pantallas muy pequeñas */
+        margin: 10px 0;
     }
 
     .busqueda input {
-        width: 150px; /* Reducir el tamaño del input en pantallas pequeñas */
+        width: 150px;
     }
 }
