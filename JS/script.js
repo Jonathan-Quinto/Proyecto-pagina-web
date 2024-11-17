@@ -1,25 +1,33 @@
-// Función para obtener y mostrar animes
-async function fetchAndDisplayAnimes(searchTerm = '') {
+// Función para buscar y mostrar animes
+async function fetchAndDisplayAnimes(searchTerm = '', endpoint = 'seasons/now') {
     try {
-        const response = await fetch('https://api.jikan.moe/v4/anime?q=bleach&sfw');
+        // Determinar el endpoint según si hay un término de búsqueda
+        const url = searchTerm
+            ? `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=10`
+            : `https://api.jikan.moe/v4/${endpoint}?sfw`;
+
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
+
         const data = await response.json();
-
         const animeContainer = document.getElementById('anime-container');
-        animeContainer.innerHTML = ''; // Limpiar el contenedor de animes
+        animeContainer.innerHTML = ''; // Limpiar contenedor
 
-        // Filtrar animes según el término de búsqueda
-        const filteredAnimes = data.data.filter(anime => 
-            anime.title.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        // Validar si hay resultados
+        const animes = data.data || [];
+        if (animes.length === 0) {
+            animeContainer.innerHTML = '<p>No se encontraron resultados.</p>';
+            return;
+        }
 
-        filteredAnimes.forEach(anime => {
+        // Mostrar resultados
+        animes.forEach((anime) => {
             const animeDiv = document.createElement('div');
             animeDiv.classList.add('anime-item');
 
-            const genres = anime.genres.map(genre => genre.name).join(', ');
+            const genres = anime.genres.map((genre) => genre.name).join(', ');
 
             animeDiv.innerHTML = `
                 <div class="anime-grid">
@@ -27,80 +35,43 @@ async function fetchAndDisplayAnimes(searchTerm = '') {
                         <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
                     </div>
                     <div class="anime-info">
-                        <p><strong>Géneros:</strong> ${genres}</p>
                         <h3>${anime.title}</h3>
+                        <p><strong>Géneros:</strong> ${genres}</p>
+                        <p>${anime.synopsis ? anime.synopsis.slice(0, 100) + '...' : 'Sin descripción disponible'}</p>
+                        <p><strong>Tipo:</strong> ${anime.type}</p>
+                        <p><strong>Episodios:</strong> ${anime.episodes || 'Desconocido'}</p>
                     </div>
                 </div>
             `;
             animeContainer.appendChild(animeDiv);
         });
-
-        if (filteredAnimes.length === 0) {
-            animeContainer.innerHTML = '<p>No se encontraron resultados.</p>';
-        }
     } catch (error) {
-        console.error("Error al obtener los animes:", error);
+        console.error('Error al obtener los animes:', error);
         alert(`Hubo un problema al obtener la información: ${error.message}`);
     }
 }
 
-// Cargar los animes al inicio
-fetchAndDisplayAnimes();
+// Cargar animes de temporada al inicio
+document.addEventListener('DOMContentLoaded', () => {
+    fetchAndDisplayAnimes(); // Cargar temporada actual
+});
 
 // Botón de búsqueda
 document.getElementById('button').addEventListener('click', () => {
-    const searchTerm = document.getElementById('search-input').value;
-    fetchAndDisplayAnimes(searchTerm);
+    const searchTerm = document.getElementById('search-input').value.trim();
+    fetchAndDisplayAnimes(searchTerm); // Buscar con el término ingresado
 });
 
-// Búsqueda en tiempo real (opcional)
+// Permitir búsqueda en tiempo real (opcional)
 document.getElementById('search-input').addEventListener('input', () => {
-    const searchTerm = document.getElementById('search-input').value;
+    const searchTerm = document.getElementById('search-input').value.trim();
     fetchAndDisplayAnimes(searchTerm);
 });
 
-// Función para obtener noticias
-async function fetchAnimeNews() {
-    try {
-        const response = await fetch("https://api.jikan.moe/v4/top/anime");
-        if (!response.ok) {
-            throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
-        const data = await response.json();
-
-        const newsContainer = document.getElementById("newsContainer");
-        newsContainer.innerHTML = ''; // Limpiar el contenedor de noticias
-
-        data.data.slice(0, 4).forEach(newsItem => {
-            const card = document.createElement("div");
-            card.classList.add("card");
-
-            const img = document.createElement("img");
-            img.src = newsItem.images.jpg.large_image_url;
-            img.alt = newsItem.title;
-
-            const cardContent = document.createElement("div");
-            cardContent.classList.add("card-content");
-
-            const title = document.createElement("h3");
-            title.classList.add("title");
-            title.textContent = newsItem.title;
-
-            const backdrop = document.createElement("div");
-            backdrop.classList.add("backdrop");
-            backdrop.textContent = newsItem.synopsis || 'Sin descripción';
-
-            cardContent.appendChild(title);
-            card.appendChild(img);
-            card.appendChild(cardContent);
-            card.appendChild(backdrop);
-            newsContainer.appendChild(card);
-        });
-    } catch (error) {
-        console.error("Error al obtener noticias de anime:", error);
-        alert(`Hubo un problema al obtener las noticias: ${error.message}`);
+// Permitir buscar con la tecla Enter
+document.getElementById('search-input').addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        const searchTerm = document.getElementById('search-input').value.trim();
+        fetchAndDisplayAnimes(searchTerm);
     }
-}
-
-// Llamada a la función para cargar las noticias al inicio
-fetchAnimeNews();
+});

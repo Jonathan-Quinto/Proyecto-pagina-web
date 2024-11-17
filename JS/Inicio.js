@@ -23,15 +23,12 @@ async function fetchAnimeNews() {
         title.classList.add("title");
         title.textContent = newsItem.title;
   
-        const backdrop = document.createElement("div");
-        backdrop.classList.add("backdrop");
-        backdrop.textContent = newsItem.synopsis;
+        
   
         // Añadimos los elementos a la tarjeta
         cardContent.appendChild(title);
         card.appendChild(img);
         card.appendChild(cardContent);
-        card.appendChild(backdrop);
         newsContainer.appendChild(card);
   
         // Agregamos el efecto de expansión en hover usando CSS ya definido

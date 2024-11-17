@@ -9,27 +9,26 @@
 <body>
     <nav>
         <h1>ANIMESNEWS</h1>
+        <div class="busqueda">
+            <input type="text" id="search-input" placeholder="Ingrese el nombre del anime">
+            <button id="button">Buscar</button>
+        </div>
         <ul>
             <li><a href="INICIO.html">Inicio</a></li>
             <li><a href="#section2">Personajes</a></li>
             <li><a href="#section3">Explorar</a></li>
-            <li><a href="#section4">Contacto</a></li>
+            <li><a href="#section5">Sobre Nosotros</a></li>
+            <li><a href="#section4">Login/Register</a></li>
         </ul>
     </nav>
+
     <section class="MainContainer">
         <section class="section1">
-            <div class="ContienePJ">
-                <h2>Buscar anime</h2>
-                <div class="busqueda">
-                    <input type="text" placeholder="Ingrese el nombre del anime">
-                    <button id="button">Buscar</button>
-                </div>
-                
-            </div>
             <div class="ContieneInfoPJ">
                 <div id="contenedorinfo">
                     <div class="anime-list">
-                        <h2>Top Animes OVA</h2>
+                        <h2>Top Animes</h2>
+                        <!-- Contenedor para los resultados -->
                         <div id="anime-container"></div>
                     </div>
                 </div>
