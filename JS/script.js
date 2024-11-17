@@ -1,5 +1,5 @@
 // Función para buscar y mostrar animes
-async function fetchAndDisplayAnimes(searchTerm = '', endpoint = 'seasons/now') {
+async function fetchAndDisplayAnimes(searchTerm = '', endpoint = 'anime') {
     try {
         // Determinar el endpoint según si hay un término de búsqueda
         const url = searchTerm
@@ -7,9 +7,7 @@ async function fetchAndDisplayAnimes(searchTerm = '', endpoint = 'seasons/now') 
             : `https://api.jikan.moe/v4/${endpoint}?sfw`;
 
         const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
+       
 
         const data = await response.json();
         const animeContainer = document.getElementById('anime-container');
@@ -30,6 +28,7 @@ async function fetchAndDisplayAnimes(searchTerm = '', endpoint = 'seasons/now') 
             const genres = anime.genres.map((genre) => genre.name).join(', ');
 
             animeDiv.innerHTML = `
+            <a href="PaginaDeAnime.html">
                 <div class="anime-grid">
                     <div class="anime-image">
                         <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
@@ -37,11 +36,13 @@ async function fetchAndDisplayAnimes(searchTerm = '', endpoint = 'seasons/now') 
                     <div class="anime-info">
                         <h3>${anime.title}</h3>
                         <p><strong>Géneros:</strong> ${genres}</p>
-                        <p>${anime.synopsis ? anime.synopsis.slice(0, 100) + '...' : 'Sin descripción disponible'}</p>
                         <p><strong>Tipo:</strong> ${anime.type}</p>
+                        <p><strong>Año:</strong> ${anime.year}</p>
+                        
                         <p><strong>Episodios:</strong> ${anime.episodes || 'Desconocido'}</p>
                     </div>
                 </div>
+                </a>
             `;
             animeContainer.appendChild(animeDiv);
         });
