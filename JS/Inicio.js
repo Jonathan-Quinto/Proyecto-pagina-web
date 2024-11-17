@@ -1,13 +1,13 @@
 // Función para obtener las noticias desde Jikan API
 async function fetchAnimeNews() {
     try {
-      const response = await fetch("https://api.jikan.moe/v4/top/anime");
+      const response = await fetch("https://api.jikan.moe/v4/anime");
       const data = await response.json();
   
       // Seleccionamos el contenedor donde añadiremos las tarjetas de noticias
       const newsContainer = document.getElementById("newsContainer");
   
-      data.data.slice(0, 4).forEach((newsItem, index) => {
+      data.data.slice(0, 3).forEach((newsItem, index) => {
         // Creamos la estructura de cada tarjeta
         const card = document.createElement("div");
         card.classList.add("card");
