@@ -1,43 +1,65 @@
-// Función para obtener las noticias desde Jikan API
-async function fetchAnimeNews() {
-    try {
-      const response = await fetch("https://api.jikan.moe/v4/anime");
-      const data = await response.json();
-  
-      // Seleccionamos el contenedor donde añadiremos las tarjetas de noticias
-      const newsContainer = document.getElementById("newsContainer");
-  
-      data.data.slice(0, 3).forEach((newsItem, index) => {
-        // Creamos la estructura de cada tarjeta
-        const card = document.createElement("div");
-        card.classList.add("card");
-  
-        const img = document.createElement("img");
-        img.src = newsItem.images.jpg.large_image_url;
-        img.alt = `Anime ${index + 1}`;
-  
-        const cardContent = document.createElement("div");
-        cardContent.classList.add("card-content");
-  
-        const title = document.createElement("h3");
-        title.classList.add("title");
-        title.textContent = newsItem.title;
-  
-        
-  
-        // Añadimos los elementos a la tarjeta
-        cardContent.appendChild(title);
-        card.appendChild(img);
-        card.appendChild(cardContent);
-        newsContainer.appendChild(card);
-  
-        // Agregamos el efecto de expansión en hover usando CSS ya definido
-      });
-    } catch (error) {
-      console.error("Error fetching anime news:", error);
+// Función para obtener noticias y un video desde Jikan API
+async function fetchAnimeNewsAndTrailer() {
+  try {
+    const animeId = 1; // ID del anime (por ejemplo, Cowboy Bebop)
+    const newsResponse = await fetch(`https://api.jikan.moe/v4/anime/${animeId}/news`);
+    const animeResponse = await fetch(`https://api.jikan.moe/v4/anime/${animeId}`);
+    
+    const newsData = await newsResponse.json();
+    const animeData = await animeResponse.json();
+
+    const newsContainer = document.getElementById("newsContainer");
+
+    // 1. Mostrar el trailer del anime
+    const trailer = animeData.data.trailer.embed_url;
+    if (trailer) {
+      const videoCard = document.createElement("div");
+      videoCard.classList.add("card");
+
+      const iframe = document.createElement("iframe");
+      iframe.src = trailer;
+      iframe.width = "100%";
+      iframe.height = "300px";
+      iframe.allowFullscreen = true;
+
+      const videoTitle = document.createElement("h3");
+      videoTitle.textContent = "Trailer Oficial";
+
+      videoCard.appendChild(iframe);
+      videoCard.appendChild(videoTitle);
+      newsContainer.appendChild(videoCard);
     }
+
+    // 2. Mostrar 2 artículos de noticias
+    newsData.data.slice(0, 2).forEach((newsItem) => {
+      const articleCard = document.createElement("div");
+      articleCard.classList.add("card");
+
+      const articleImg = document.createElement("img");
+      articleImg.src = newsItem.images.jpg.image_url;
+      articleImg.alt = newsItem.title;
+
+      const articleContent = document.createElement("div");
+      articleContent.classList.add("card-content");
+
+      const articleTitle = document.createElement("h3");
+      articleTitle.textContent = newsItem.title;
+
+      const articleLink = document.createElement("a");
+      articleLink.href = newsItem.url;
+      articleLink.target = "_blank"; // Abrir en una nueva pestaña
+      articleLink.textContent = "Ver Articulo";
+
+      articleContent.appendChild(articleTitle);
+      articleContent.appendChild(articleLink);
+      articleCard.appendChild(articleImg);
+      articleCard.appendChild(articleContent);
+      newsContainer.appendChild(articleCard);
+    });
+  } catch (error) {
+    console.error("Error fetching anime news or trailer:", error);
   }
-  
-  // Llamamos a la función para obtener las noticias cuando la página carga
-  fetchAnimeNews();
-  
+}
+
+// Llamamos a la función al cargar la página
+fetchAnimeNewsAndTrailer();

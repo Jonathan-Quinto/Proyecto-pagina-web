@@ -206,7 +206,7 @@ nav ul li a:hover {
 .ConteinerCard {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 2rem;
     justify-content: center;
 }
 
@@ -235,7 +235,32 @@ nav ul li a:hover {
 .card-content {
     padding: 1rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre elementos */
 }
+
+.card-content a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ff6a00;
+    background-color: #ff6a00;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: fit-content;
+    align-self: center; /* Centra el botón horizontalmente */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card-content a:hover {
+    background-color: #fff;
+    color: #ff6a00;
+}
+
 
 footer {
     background-color: #333;
@@ -249,7 +274,6 @@ footer {
 @media (max-width: 1024px) {
 
     .busqueda input{
-        position: fixed;
         top: 5px;
     }
     nav h1 {
@@ -287,6 +311,11 @@ footer {
 @media (max-width: 800px) {
     nav h1 {
         font-size: 2rem;
+    }
+
+    .ConteinerNav{
+        display: flex;
+        flex-direction: column;
     }
 
     .anime-item {
