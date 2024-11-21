@@ -58,10 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Botón de búsqueda
-document.getElementById('button').addEventListener('click', () => {
-    const searchTerm = document.getElementById('search-input').value.trim();
-    fetchAndDisplayAnimes(searchTerm); // Buscar con el término ingresado
-});
 
 // Permitir búsqueda en tiempo real (opcional)
 document.getElementById('search-input').addEventListener('input', () => {
