@@ -38,9 +38,11 @@ nav .logo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 100px;
+    justify-content: center;
+    margin-right: 10px;
     gap: 10px;
 }
+
 
 nav .logo a img {
     width: 30px;
@@ -58,16 +60,15 @@ nav .logo h1 {
     color: #ccc;
     font-size: 3rem;
     margin-right: auto;
-    margin-left: 2%;
+    margin-left: auto;
     font-family:Georgia, 'Times New Roman', Times, serif;
-
 }
 
 nav ul {
     list-style: none;
     display: flex;
     align-items: center;
-    margin-right: 10px;
+    margin-left: auto;
 }
 
 nav ul li {
@@ -274,6 +275,151 @@ nav ul li a:hover {
     color: #ff6a00;
 }
 
+/* -----------------------------------------------Pantalla Login -----------------------------------------*/
+.Formulario{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-style:inset;
+    width: 37%;
+    align-self: center;
+    border-color: #3a3a3a;
+    padding: 20px;
+}
+
+.Formulario h1 {
+    color: #ff6a00;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.Formulario p {
+    color: #fff;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.Nombre {
+    width: 400px;
+    position: relative;
+    margin-bottom:40px;
+    margin-left: 15%;
+    border-radius: 4px;
+    margin-top: 20px;
+    background-color: #3a3a3a;
+    border: 2px solid #e65a00;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Input transparente */
+.Nombre input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Label flotante */
+.Nombre label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.3s ease all;
+}
+
+/* Animación cuando se escribe o enfoca */
+.Nombre input:focus + label,
+.Nombre input:not(:placeholder-shown) + label {
+    top: -1px;
+    background-color: #282c34;
+    border-radius: 20px;
+    left: 10px;
+    font-size: 0.85rem;
+    color: orange;
+}
+
+
+.Password {
+    width: 400px;
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    margin-left: 15%;
+    background-color: #3a3a3a;
+    border: 2px solid #e65a00;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Input transparente */
+.Password input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Label flotante */
+.Password label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.3s ease all;
+}
+
+/* Animación cuando se escribe o enfoca */
+.Password input:focus + label,
+.Password input:not(:placeholder-shown) + label {
+    top: -1px;
+    background-color: #282c34;
+    border-radius: 20px;
+    left: 10px;
+    font-size: 0.85rem;
+    color: orange;
+}
+
+.Buttoms{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100px;
+    align-self: center;
+}
+
+.Buttoms input{
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #ff6a00;
+    color: #fff;
+    border-color: #ff6a00;
+    border-style: outset;
+    align-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    margin-left: 230px;
+    margin-top: 100px;
+}
 
 footer {
     background-color: #333;
