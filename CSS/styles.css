@@ -421,6 +421,74 @@ nav ul li a:hover {
     margin-top: 100px;
 }
 
+
+
+
+/*-------------------------------------------------Pantalla Sobre Nosotros------------------------------------------------*/
+.ConteinerCardSN {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    justify-items: center;
+    justify-content: center;
+    overflow-x: auto;
+    width: 100%;
+    padding: 1rem;
+}
+
+.card {
+    flex-shrink: 0;
+    max-width: 220px;
+    min-width: 200px;
+}
+
+.card img {
+    width: 100%;
+    padding: 0%;
+}
+
+body {
+    width: 100%;
+}
+
+.ConteinerCardSN.card-content a {
+    color: blueviolet;
+}
+
+.conteinerNav {
+    width: 100vw;
+}
+
+nav {
+    width: 100%;
+}
+
+.Title {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 2%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-bottom: 0%;
+}
+
+
+/* Media Query para pantallas de 1024px */
+
+@media (max-width: 1024px) {
+    .ConteinerCardSN {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .card {
+        max-width: 300px;
+    }
+}
+
+
+
+
+
 footer {
     background-color: #333;
     color: #ccc;
@@ -465,6 +533,15 @@ footer {
         width: 100%;
 
     }
+
+    .ConteinerCardSN {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .card {
+        max-width: 300px;
+    }
+
 }
 
 @media (max-width: 800px) {
@@ -483,5 +560,21 @@ footer {
 
     .busqueda input {
         width: 150px;
+    }
+    .ConteinerCardSN {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .card {
+        max-width: 75%;
+    }
+}
+@media (max-width: 480px) {
+    .ConteinerCardSN {
+        flex-direction: column;
+        align-items: center;
+    }
+    .card {
+        width: 100%;
     }
 }
